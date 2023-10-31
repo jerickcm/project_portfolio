@@ -16,7 +16,7 @@ export default {
                     <p>
                         If you have any questions or inquiries, please
                         <a
-                            href="mailto:contact@japan-travel.com"
+                            href="mailto:jerickmangalus@engrjerick.com"
                             class="text-blue-400 hover:text-blue-200"
                             >contact us via email</a
                         >.
@@ -27,11 +27,11 @@ export default {
                             class="text-blue-400 hover:text-blue-200 mr-4"
                             >Home</Link
                         >
-                        <Link
+                        <!-- <Link
                             :href="route('about')"
                             class="text-blue-400 hover:text-blue-200 mr-4"
                             >About Us</Link
-                        >
+                        > -->
                     </div>
                 </div>
             </footer>

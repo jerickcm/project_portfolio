@@ -19,7 +19,7 @@ export default {
                     <main>
                         <slot />
                     </main>
-                    <div style="min-height: 460px"></div>
+                    <div style="min-height: 10px"></div>
                 </div>
 
                 <Footer />

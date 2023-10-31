@@ -1,7 +1,7 @@
 <script>
 import { Head, Link } from "@inertiajs/vue3";
 import Layout from "../Layouts/GeneralLayout.vue";
-
+import { ref, onMounted, reactive, watch, computed } from "vue";
 export default {
     components: {
         Head,
@@ -9,7 +9,52 @@ export default {
         Layout,
     },
     setup(props) {
-        return {};
+        const website_projects = reactive([
+            {
+                sitename: "Payco",
+                image: "payco.jpg",
+                url: "https://www.pay.co/",
+                contribution: "",
+            },
+            {
+                sitename: "ForexMart",
+                image: "forexmart.jpg",
+                url: "https://www.forexmart.com/",
+                contribution: "",
+            },
+            {
+                sitename: "Binary Instaforex",
+                image: "binaryinstaforex.jpg",
+                url: "https://binary.instaforex.com/",
+                contribution: "",
+            },
+            {
+                sitename: "Orsat",
+                image: "orsat.jpg",
+                url: "https://orsatmax.com/",
+                contribution: "",
+            },
+            {
+                sitename: "CSWDO Malolos Database",
+                image: "cswdo.jpg",
+                url: "https://cswdo.engrjerick.com/",
+                contribution: "",
+            },
+            {
+                sitename: "Saipan Dol Workforce",
+                image: "cnmidol.jpg",
+                url: "https://www.cnmidol.com/",
+                contribution: "",
+            },
+            {
+                sitename: "Japan Travel Information",
+                image: "travelinfo.jpg",
+                url: "https://travelinfo.engrjerick.com/",
+                contribution: "",
+            },
+        ]);
+
+        return { website_projects };
     },
 };
 </script>
@@ -42,16 +87,19 @@ export default {
                         <div class="text-right">
                             <a
                                 href="https://github.com/jerickcm"
+                                target="_blank"
                                 class="px-4 py-2 rounded bg-transparent hover:text-purple-700"
                             >
                                 Hire Me
                             </a>
-                            <button
-                                type="button"
-                                class="text-purple-700 hover:text-white border-2 border-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-purple-500 dark:text-purple-500 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-800"
-                            >
-                                Say Hello
-                            </button>
+                            <a href="mailto:jerickmangalus@engrjerick.com">
+                                <button
+                                    type="button"
+                                    class="text-purple-700 hover:text-white border-2 border-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-purple-500 dark:text-purple-500 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-800"
+                                >
+                                    Say Hello
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +110,7 @@ export default {
                         I plan, analyze and code as a Web Developer & Mentor
                     </div>
                     <div class="text-lg mt-4">
-                        I design and code beautifully simple things, and I love
+                        I engineer simple solutions through coding, and I love
                         what I do.
                     </div>
                     <div>
@@ -79,7 +127,7 @@ export default {
             >
                 <div class="w-full sm:w-1/2 text-white my-8 py-10">
                     <p class="text-3xl mt-4 text-center font-bold my-5">
-                        Website Projects
+                        Hello, I'm Jerick
                     </p>
                     <p class="text-xl mt-2 text-justify">
                         It's a pleasure to meet you. I've recently embarked on
@@ -97,99 +145,51 @@ export default {
             </section>
 
             <section>
-                <div class="container mx-auto">
-                    <div class="w-full sm:w-1/2 my-8 py-10">
+                <div class="container mx-auto px-4">
+                    <div
+                        class="flex flex-col justify-center items-center my-8 py-10"
+                    >
                         <label class="text-3xl mt-4 text-center font-bold my-5">
                             Website Projects
                         </label>
                     </div>
+
                     <div class="flex flex-wrap">
-                        <div class="w-1/3 p-4">
-                            <div class="bg-gray-100 rounded-lg shadow-lg">
-                                <div class="p-4">
-                                    <!-- Image Box -->
-                                    <div class="mb-4">
-                                        <img
-                                            src="your-image-url.jpg"
-                                            alt="Image Alt Text"
-                                            class="w-full h-auto rounded-lg"
-                                        />
-                                    </div>
-                                    <!-- Widget content goes here -->
-                                    <h3 class="text-xl font-semibold">
-                                        Widget Title
-                                    </h3>
-                                    <p class="text-gray-700">
-                                        Widget description or content.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-1/3 p-4">
+                        <div
+                            class="w-1/3 p-4"
+                            v-for="(item, index) in website_projects"
+                            :key="index"
+                        >
                             <div
-                                class="bg-gray-100 rounded-lg shadow-lg box-border hover:box-content"
+                                class="bg-sky-300 rounded-lg shadow-lg border-2 border-blue-500 transition-transform transform hover:border-blue-500 hover:bg-sky-400"
                             >
-                                <div class="p-4">
-                                    <!-- Image Box -->
-                                    <div class="mb-4">
-                                        <img
-                                            src="your-image-url.jpg"
-                                            alt="Image Alt Text"
-                                            class="w-full h-auto rounded-lg"
-                                        />
+                                <a :href="item.url">
+                                    <div class="p-4">
+                                        <div class="mb-4">
+                                            <img
+                                                :src="
+                                                    '/assets/img/' + item.image
+                                                "
+                                                target="_blank"
+                                                alt="Image Alt Text"
+                                                class="w-full h-auto rounded-lg"
+                                            />
+                                        </div>
+                                        <h3 class="text-xl font-semibold">
+                                            {{ item.sitename }}
+                                        </h3>
+                                        <p class="text-gray-700">
+                                            {{ item.contribution }}
+                                        </p>
                                     </div>
-                                    <!-- Widget content goes here -->
-                                    <h3 class="text-xl font-semibold">
-                                        Widget Title
-                                    </h3>
-                                    <p class="text-gray-700">
-                                        Widget description or content.
-                                    </p>
-                                </div>
+                                </a>
                             </div>
                         </div>
-                        <div class="w-1/3 p-4">
-                            <div class="bg-gray-100 rounded-lg shadow-lg">
-                                <div class="p-4">
-                                    <!-- Image Box -->
-                                    <div class="mb-4">
-                                        <img
-                                            src="your-image-url.jpg"
-                                            alt="Image Alt Text"
-                                            class="w-full h-auto rounded-lg"
-                                        />
-                                    </div>
-                                    <!-- Widget content goes here -->
-                                    <h3 class="text-xl font-semibold">
-                                        Widget Title
-                                    </h3>
-                                    <p class="text-gray-700">
-                                        Widget description or content.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-1/3 p-4">
-                            <div class="bg-purple-100 rounded-lg shadow-lg">
-                                <div class="p-4">
-                                    <!-- Image Box -->
-                                    <div class="mb-4">
-                                        <img
-                                            src="your-image-url.jpg"
-                                            alt="Image Alt Text"
-                                            class="w-full h-auto rounded-lg"
-                                        />
-                                    </div>
-                                    <!-- Widget content goes here -->
-                                    <h3 class="text-xl font-semibold">
-                                        Widget Title
-                                    </h3>
-                                    <p class="text-gray-700">
-                                        Widget description or content.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div
+                        class="flex flex-col justify-center items-center mt-8 pt-10"
+                    >
+                        <img src="/assets/img/logo.jpg" alt="offial logo" />
                     </div>
                 </div>
             </section>

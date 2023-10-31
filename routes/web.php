@@ -20,9 +20,9 @@ Route::name('homepage')->get('/', function () {
     return Inertia::render('Index', []);
 });
 
-Route::name('about')->get('/about', function () {
-    return Inertia::render('Index', []);
-});
+// Route::name('about')->get('/about', function () {
+//     return Inertia::render('Index', []);
+// });
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');

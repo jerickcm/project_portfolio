@@ -1,7 +1,7 @@
 <script>
 import { Head, Link } from "@inertiajs/vue3";
 import { ref, onMounted, reactive, watch, computed } from "vue";
-import Layout from "../Layouts/CityLayout.vue";
+import Layout from "../Layouts/GeneralLayout.vue";
 
 export default {
     components: {
