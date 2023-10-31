@@ -29,6 +29,12 @@ export default {
                 contribution: "",
             },
             {
+                sitename: "E27.co",
+                image: "e27.jpg",
+                url: "https://e27.co/",
+                contribution: "",
+            },
+            {
                 sitename: "Orsat",
                 image: "orsat.jpg",
                 url: "https://orsatmax.com/",
@@ -65,7 +71,7 @@ export default {
         <div class="min-h-screen flex flex-col">
             <section class="flex-1 h-screen bg-white-500 mb-16">
                 <div class="flex mt-5 mx-6 mb-0">
-                    <div class="w-1/2 p-4">
+                    <div class="w-full sm:w-1/2 p-2 sm:p-4">
                         <div class="text-left">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +89,7 @@ export default {
                             </svg>
                         </div>
                     </div>
-                    <div class="w-1/2 p-4">
+                    <div class="w-full sm:w-1/2 p-2 sm:p-4">
                         <div class="text-right">
                             <a
                                 href="https://github.com/jerickcm"
@@ -104,7 +110,7 @@ export default {
                     </div>
                 </div>
                 <div
-                    class="flex flex-col justify-center items-center my-8 py-10"
+                    class="flex flex-col justify-center items-center px-2 my-2 py-2 sm:my-8 sm:py-10"
                 >
                     <div class="text-4xl font-bold">
                         I plan, analyze and code as a Web Developer & Mentor
@@ -125,7 +131,9 @@ export default {
             <section
                 class="flex-1 h-screen bg-blue-500 flex items-center justify-center"
             >
-                <div class="w-full sm:w-1/2 text-white my-8 py-10">
+                <div
+                    class="w-full sm:w-1/2 text-white my-2 py-2 px-4 sm:my-8 sm:py-10"
+                >
                     <p class="text-3xl mt-4 text-center font-bold my-5">
                         Hello, I'm Jerick
                     </p>
@@ -156,7 +164,7 @@ export default {
 
                     <div class="flex flex-wrap">
                         <div
-                            class="w-1/3 p-4"
+                            class="w-full sm:w-1/3 p-4"
                             v-for="(item, index) in website_projects"
                             :key="index"
                         >
