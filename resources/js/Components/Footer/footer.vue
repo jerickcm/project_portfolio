@@ -11,17 +11,22 @@ export default {
 <template>
     <footer>
         <div id="footer" class="p-5 bg-bottom">
-            <footer class="footer bg-gray-900 text-gray-200 py-4 text-center">
-                <div class="container mx-auto">
-                    <p>
-                        If you have any questions or inquiries, please
-                        <a
-                            href="mailto:jerickmangalus@engrjerick.com"
-                            class="text-blue-400 hover:text-blue-200"
-                            >contact us via email</a
-                        >.
-                    </p>
-                    <div class="mt-4">
+            <footer
+                class="footer bg-gray-900 text-gray-200 py-4 text-center pb-5 sm:pb-20"
+            >
+                <div class="container mx-auto flex flex-col">
+                    <div>
+                        <p>
+                            If you have any questions or inquiries, please
+                            <a
+                                href="mailto:jerickmangalus@engrjerick.com"
+                                class="text-blue-400 hover:text-blue-200"
+                                >contact us via email</a
+                            >.
+                        </p>
+                    </div>
+
+                    <div class="mt-2">
                         <Link
                             :href="route('homepage')"
                             class="text-blue-400 hover:text-blue-200 mr-4"
@@ -33,6 +38,7 @@ export default {
                             >About Us</Link
                         > -->
                     </div>
+                    <div></div>
                 </div>
             </footer>
         </div>

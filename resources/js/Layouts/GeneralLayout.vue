@@ -19,7 +19,7 @@ export default {
                     <main>
                         <slot />
                     </main>
-                    <div style="min-height: 10px"></div>
+                    <div style="min-height: 20px"></div>
                 </div>
 
                 <Footer />
@@ -35,6 +35,6 @@ export default {
 }
 
 #body {
-    padding-bottom: 100px;
+    padding-bottom: 120px;
 }
 </style>
