@@ -59,7 +59,6 @@ export default {
                 contribution: "",
             },
         ]);
-
         const training_certificates = reactive([
             /** Udemy */
             {
@@ -114,16 +113,16 @@ export default {
             },
             {
                 message: "Will be working with him again.",
-                author: "cnmidol",
-                role: "CNMI DOL Operations",
+                author: "Ms. Candy Feliciano",
+                role: "CNMI DOL Operations- Mariana Island",
             },
             {
-                message: " Top-notch solutions and a pleasure to work with.",
+                message: "Top-notch solutions and a pleasure to work with.",
                 author: "",
                 role: "",
             },
             {
-                message: " Innovative solutions and exceptional support.",
+                message: "Innovative solutions and exceptional support.",
                 author: "",
                 role: "",
             },
@@ -133,10 +132,91 @@ export default {
                 role: "",
             },
         ]);
+        const freelance = reactive([
+            {
+                src: "upwork.svg",
+                name: "Upwork",
+                alt: "Upwork",
+                url: "https://www.upwork.com/freelancers/~015515782763c14dc3",
+            },
+            {
+                src: "fiverr-2.svg",
+                name: "Fiverr",
+                alt: "Fiverr",
+                url: "https://www.fiverr.com/jerickmangalus",
+            },
+        ]);
+        const techlogo = reactive([
+            {
+                src: "python-5.svg",
+                name: "Phyton",
+                alt: "Phyton",
+            },
+
+            {
+                src: "wordpress-icon.svg",
+                name: "WordPress",
+                alt: "WordPress",
+            },
+
+            {
+                src: "codeigniter-2.svg",
+                name: "CodeIgniter",
+                alt: "CodeIgniter",
+            },
+            {
+                src: "laravel-2.svg",
+                name: "Laravel ",
+                alt: "Laravel",
+            },
+
+            {
+                src: "vue-9.svg",
+                name: "Vue JS 3",
+                alt: "Vue JS 3",
+            },
+            {
+                src: "nuxt-2.svg",
+                name: "Nuxt Js",
+                alt: "Nuxt Js",
+            },
+            {
+                src: "react-2.svg",
+                name: "React Js",
+                alt: "React Js",
+            },
+            {
+                src: "ubuntu-icon.svg",
+                name: "Ubuntu",
+                alt: "Ubuntu",
+            },
+            {
+                src: "centos.svg",
+                name: "CentOS",
+                alt: "CentOS",
+            },
+            {
+                src: "nginx-1.svg",
+                name: "Nginx",
+                alt: "Nginx",
+            },
+            {
+                src: "apache-13.svg",
+                name: "Apache",
+                alt: "Apache",
+            },
+            {
+                src: "docker-3.svg",
+                name: "Docker",
+                alt: "Docker",
+            },
+        ]);
         return {
             website_projects,
             training_certificates,
             testimonial,
+            techlogo,
+            freelance,
         };
     },
 };
@@ -146,7 +226,7 @@ export default {
     <Head title="Portfolio Website" />
     <Layout>
         <div class="min-h-screen flex flex-col">
-            <section class="flex-1 h-screen bg-white-500 mb-16">
+            <section class="flex-1 h-screen">
                 <div class="flex mt-5 mx-6 mb-0">
                     <div class="w-full sm:w-1/2 p-2 sm:p-4">
                         <div class="text-left">
@@ -211,7 +291,6 @@ export default {
                     </div>
                 </div>
             </section>
-
             <section
                 class="flex-1 h-screen bg-blue-500 flex items-center justify-center"
             >
@@ -250,7 +329,30 @@ export default {
                     </p>
                 </div>
             </section>
+            <section class="bg-emerald-200 py-5">
+                <div class="flex flex-col justify-center">
+                    <label class="text-xl text-center text-blue-950 my-2">
+                        My Current Skillset
+                    </label>
+                </div>
+                <div class="flex flex-row flex-wrap justify-center">
+                    <div
+                        v-for="(logo, index) in techlogo"
+                        :key="index"
+                        class="py-2 px-2 m-2 text-center"
+                    >
+                        <img
+                            class="h-8"
+                            :src="'/assets/img/logo/' + logo.src"
+                            :alt="logo.alt"
+                        />
 
+                        <label class="text-center" for="vue logo">{{
+                            logo.name
+                        }}</label>
+                    </div>
+                </div>
+            </section>
             <section>
                 <div class="container mx-auto px-4">
                     <div
@@ -294,6 +396,73 @@ export default {
                                 </a>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-blue-500 py-5">
+                <div class="container mx-auto px-4">
+                    <div
+                        class="flex flex-col justify-center items-center my-8 py-10"
+                    >
+                        <label
+                            class="text-white text-3xl mt-4 text-center font-bold my-5 underline underline-offset-8"
+                        >
+                            Training and Certificates
+                        </label>
+                    </div>
+                    <div class="flex flex-wrap">
+                        <div
+                            class="w-full lg:w-1/3 md:w-1/2 sm:w-full p-4 px-1 py-1 sm:px-4 sm:py-4"
+                            v-for="(item, index) in training_certificates"
+                            :key="index"
+                        >
+                            <div
+                                class="bg-blue-500 rounded-lg shadow-lg border-2 border-gray-400 transition-transform transform hover:border-white hover:bg-blue-400"
+                            >
+                                <a :href="item.url">
+                                    <div class="p-4">
+                                        <div class="mb-4">
+                                            <img
+                                                :src="item.src"
+                                                target="_blank"
+                                                alt="Image Alt Text"
+                                                class="w-full h-auto rounded-lg"
+                                            />
+                                        </div>
+                                        <h3
+                                            class="text-xl font-semibold text-white"
+                                        >
+                                            {{ item.title }}
+                                        </h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-cyan-200 py-5">
+                <div class="flex flex-col justify-center">
+                    <label class="text-xl text-center text-blue-950 my-2">
+                        My Freelance Pages
+                    </label>
+                </div>
+                <div class="flex flex-row flex-wrap justify-center">
+                    <div
+                        v-for="(logo, index) in freelance"
+                        :key="index"
+                        class="py-2 px-2 m-2 text-center"
+                    >
+                        <a :href="logo.url" target="_blank">
+                            <img
+                                class="h-8"
+                                :src="'/assets/img/logo/' + logo.src"
+                                :alt="logo.alt"
+                            />
+                            <label for="vue logo " class="text-center">{{
+                                logo.name
+                            }}</label>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -372,49 +541,6 @@ export default {
                     </div>
                 </div>
             </section>
-            <section class="bg-blue-500">
-                <div class="container mx-auto px-4">
-                    <div
-                        class="flex flex-col justify-center items-center my-8 py-10"
-                    >
-                        <label
-                            class="text-white text-3xl mt-4 text-center font-bold my-5 underline underline-offset-8"
-                        >
-                            Training and Certificates
-                        </label>
-                    </div>
-                    <div class="flex flex-wrap">
-                        <div
-                            class="w-full lg:w-1/3 md:w-1/2 sm:w-full p-4 px-1 py-1 sm:px-4 sm:py-4"
-                            v-for="(item, index) in training_certificates"
-                            :key="index"
-                        >
-                            <div
-                                class="bg-blue-500 rounded-lg shadow-lg border-2 border-gray-400 transition-transform transform hover:border-white hover:bg-blue-400"
-                            >
-                                <a :href="item.url">
-                                    <div class="p-4">
-                                        <div class="mb-4">
-                                            <img
-                                                :src="item.src"
-                                                target="_blank"
-                                                alt="Image Alt Text"
-                                                class="w-full h-auto rounded-lg"
-                                            />
-                                        </div>
-                                        <h3
-                                            class="text-xl font-semibold text-white"
-                                        >
-                                            {{ item.title }}
-                                        </h3>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section class="flex-1 h-screen bg-white mb-16">
                 <div class="container mx-auto px-4">
                     <div
