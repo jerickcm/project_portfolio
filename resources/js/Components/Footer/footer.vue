@@ -3,9 +3,11 @@ import { Head, Link } from "@inertiajs/vue3";
 
 export default {
     data: () => ({}),
+
     components: {
         Link,
     },
+    setup(props, context) {},
 };
 </script>
 <template>
@@ -37,6 +39,11 @@ export default {
                             class="text-blue-400 hover:text-blue-200 mr-4"
                             >About Us</Link
                         > -->
+                        <!-- <img
+                            class="text-blue-400 hover:text-blue-200 mr-4"
+                            src="/assets/img/rocket12.png"
+                            alt="rocket launch"
+                        /> -->
                     </div>
                     <div></div>
                 </div>

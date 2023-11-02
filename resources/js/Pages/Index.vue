@@ -1,12 +1,16 @@
 <script>
 import { Head, Link } from "@inertiajs/vue3";
-import Layout from "../Layouts/GeneralLayout.vue";
+import Layout from "@/Layouts/GeneralLayout.vue";
+import Dropdown from "@/Components/Dropdown.vue";
+import DropdownLink from "@/Components/DropdownLink.vue";
 import { ref, onMounted, reactive, watch, computed } from "vue";
 export default {
     components: {
         Head,
         Link,
         Layout,
+        Dropdown,
+        DropdownLink,
     },
     setup(props) {
         const website_projects = reactive([
@@ -211,12 +215,69 @@ export default {
                 alt: "Docker",
             },
         ]);
+
+        const sections_main = ref([]);
+        const sections_intro = ref([]);
+        const sections_skill = ref([]);
+        const sections_cert = ref([]);
+        const sections_project = ref([]);
+        const sections_freelance = ref([]);
+        const sections_testimonial = ref([]);
+
+        const gotoTop = () => {
+            sections_main.value.scrollIntoView({ behavior: "smooth" });
+        };
+        const gotoSection = (event) => {
+            console.log(event.target.value);
+            switch (event.target.value) {
+                case "sections_main":
+                    break;
+                case "sections_intro":
+                    sections_intro.value.scrollIntoView({ behavior: "smooth" });
+                    break;
+                case "sections_skill":
+                    sections_skill.value.scrollIntoView({ behavior: "smooth" });
+                    break;
+                case "sections_project":
+                    sections_project.value.scrollIntoView({
+                        behavior: "smooth",
+                    });
+
+                    break;
+                case "sections_cert":
+                    sections_cert.value.scrollIntoView({ behavior: "smooth" });
+
+                    break;
+                case "sections_freelance":
+                    sections_freelance.value.scrollIntoView({
+                        behavior: "smooth",
+                    });
+
+                    break;
+                case "sections_testimonial":
+                    sections_testimonial.value.scrollIntoView({
+                        behavior: "smooth",
+                    });
+
+                    break;
+            }
+        };
         return {
             website_projects,
             training_certificates,
             testimonial,
             techlogo,
             freelance,
+            gotoSection,
+
+            sections_main,
+            sections_intro,
+            sections_skill,
+            sections_project,
+            sections_cert,
+            sections_freelance,
+            sections_testimonial,
+            gotoTop,
         };
     },
 };
@@ -226,24 +287,71 @@ export default {
     <Head title="Portfolio Website" />
     <Layout>
         <div class="min-h-screen flex flex-col">
-            <section class="flex-1 h-screen">
+            <section ref="sections_main" class="flex-1 h-screen">
                 <div class="flex mt-5 mx-6 mb-0">
                     <div class="w-full sm:w-1/2 p-2 sm:p-4">
-                        <div class="text-left">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="blue"
-                                class="w-10 h-10"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
-                                />
-                            </svg>
+                        <div class="text-left flex flex-row flex-wrap">
+                            <div class="mx-0 sm:mx-10">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="blue"
+                                    class="w-10 h-10"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
+                                    />
+                                </svg>
+                            </div>
+                            <div class="mx-0 sm:mx-10">
+                                <label for="underline_select" class="sr-only"
+                                    >Underline select</label
+                                >
+                                <select
+                                    @change="gotoSection($event)"
+                                    id="underline_select"
+                                    class="block py-2.5 px-2 w-full text-md text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-2 focus:border-gray-200 peer"
+                                >
+                                    <!-- class="space-y-2 block " -->
+
+                                    <option disabled selected>
+                                        Navigate Section
+                                    </option>
+                                    <option
+                                        class="p-4 m-4"
+                                        value="sections_main"
+                                    >
+                                        Main
+                                    </option>
+                                    <option value="sections_intro">
+                                        Introduction
+                                    </option>
+                                    <option value="sections_skill">
+                                        Skillset
+                                    </option>
+                                    <option value="sections_project">
+                                        Website Projects
+                                    </option>
+                                    <option value="sections_cert">
+                                        Training and Certificates
+                                    </option>
+
+                                    <option value="sections_freelance">
+                                        My Freelance Page
+                                    </option>
+                                    <option value="sections_testimonial">
+                                        Testimonial
+                                    </option>
+                                </select>
+                                <!-- <select
+                                    class="g-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    name="sections"
+                                ></select> -->
+                            </div>
                         </div>
                     </div>
                     <div class="w-full sm:w-1/2 p-2 sm:p-4">
@@ -292,6 +400,7 @@ export default {
                 </div>
             </section>
             <section
+                ref="sections_intro"
                 class="flex-1 h-screen bg-blue-500 flex items-center justify-center"
             >
                 <div
@@ -329,7 +438,7 @@ export default {
                     </p>
                 </div>
             </section>
-            <section class="bg-emerald-200 py-5">
+            <section ref="sections_skill" class="bg-emerald-200 py-5">
                 <div class="flex flex-col justify-center">
                     <label class="text-xl text-center text-blue-950 my-2">
                         My Current Skillset
@@ -353,7 +462,7 @@ export default {
                     </div>
                 </div>
             </section>
-            <section>
+            <section ref="sections_project">
                 <div class="container mx-auto px-4">
                     <div
                         class="flex flex-col justify-center items-center my-8 py-10"
@@ -399,7 +508,7 @@ export default {
                     </div>
                 </div>
             </section>
-            <section class="bg-blue-500 py-5">
+            <section ref="sections_cert" class="bg-blue-500 py-5">
                 <div class="container mx-auto px-4">
                     <div
                         class="flex flex-col justify-center items-center my-8 py-10"
@@ -441,7 +550,7 @@ export default {
                     </div>
                 </div>
             </section>
-            <section class="bg-cyan-200 py-5">
+            <section ref="sections_freelance" class="bg-cyan-200 py-5">
                 <div class="flex flex-col justify-center">
                     <label class="text-xl text-center text-blue-950 my-2">
                         My Freelance Pages
@@ -466,7 +575,10 @@ export default {
                     </div>
                 </div>
             </section>
-            <section class="flex-1 h-screen bg-black">
+            <section
+                ref="sections_testimonial"
+                class="flex-1 h-screen bg-black"
+            >
                 <div class="relative flex overflow-x-hidden">
                     <div class="py-12 animate-marquee whitespace-nowrap">
                         <div class="flex -mx-4">
@@ -541,12 +653,36 @@ export default {
                     </div>
                 </div>
             </section>
-            <section class="flex-1 h-screen bg-white mb-16">
+            <section class="flex-1 h-screen bg-white">
                 <div class="container mx-auto px-4">
                     <div
                         class="flex flex-col justify-center items-center mt-8 pt-10"
                     >
                         <img src="/assets/img/logo.jpg" alt="offial logo" />
+                    </div>
+                    <div
+                        class="flex flex-col justify-center items-center mt-8 pt-10"
+                    >
+                        <button
+                            class="tranparent group justify-center ease-out"
+                            @click="gotoTop()"
+                        >
+                            <div
+                                class="flex items-center justify-center relative transition-transform transform scale-100 group-hover:scale-110"
+                            >
+                                <img
+                                    src="/assets/img/logo/rocket-svgrepo-com.svg"
+                                    class="h-10 justify-center"
+                                />
+                            </div>
+                            <div>
+                                <span
+                                    class="invisible group-hover:visible justify-center"
+                                >
+                                    Click to launch up the rocket
+                                </span>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </section>
