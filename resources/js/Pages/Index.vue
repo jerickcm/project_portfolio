@@ -3,7 +3,18 @@ import { Head, Link } from "@inertiajs/vue3";
 import Layout from "@/Layouts/GeneralLayout.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
-import { ref, onMounted, reactive, watch, computed } from "vue";
+import {
+    ref,
+    onMounted,
+    reactive,
+    onBeforeUnmount,
+    watch,
+    computed,
+} from "vue";
+import { Observable, Subscription } from "rxjs";
+import { BehaviorSubject, fromEvent } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+
 export default {
     components: {
         Head,
@@ -11,8 +22,54 @@ export default {
         Layout,
         Dropdown,
         DropdownLink,
+        Observable,
+    },
+    beforeCreate() {
+        // Add thumbnail image to head section
+        let thumb = document.createElement("META");
+        thumb.setAttribute("name", "thumbnail");
+        thumb.setAttribute("content", "/assets/img/index.jpg");
+        document.querySelector(`head`).appendChild(thumb);
     },
     setup(props) {
+        const dataReceived = ref(false);
+        const receivedData = ref("");
+
+        const observable = new BehaviorSubject(null);
+
+        let subscription;
+
+        const startObservable = () => {
+            console.log("start observable");
+            subscription = fromEvent(document, "mousemove")
+                .pipe(takeUntil(observable))
+                .subscribe((event) => {
+                    receivedData.value = `X: ${event.clientX}, Y: ${event.clientY}`;
+                    dataReceived.value = true;
+                });
+        };
+
+        const stopObservable = () => {
+            console.log("stop observable");
+            if (subscription) {
+                subscription.unsubscribe();
+            }
+            observable.next(true);
+            observable.complete();
+            dataReceived.value = false;
+            receivedData.value = "";
+        };
+
+        onMounted(async () => {
+            await startObservable();
+            await stopObservable();
+            await startObservable();
+        });
+
+        onBeforeUnmount(() => {
+            stopObservable();
+        });
+        // startObservable();
         const section = {
             class: "relative",
         };
@@ -95,6 +152,12 @@ export default {
                 src: "/assets/img/certificate/UC-a9104c52-224f-4bc8-8f91-c241e1c93951.jpg",
                 title: "React 18 Tutorial and Projects Course (2023)",
             },
+            {
+                url: "https://www.udemy.com/certificate/UC-edaefdd0-8a94-4538-b760-54683d30fc35/",
+                src: "/assets/img/certificate/UC-edaefdd0-8a94-4538-b760-54683d30fc35.jpg",
+                title: "Slack the ultimate guide (2022)",
+            },
+            //
             /** Google */
             {
                 url: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
@@ -192,6 +255,7 @@ export default {
                 name: "React Js",
                 alt: "React Js",
             },
+
             {
                 src: "ubuntu-icon.svg",
                 name: "Ubuntu",
@@ -216,6 +280,11 @@ export default {
                 src: "docker-3.svg",
                 name: "Docker",
                 alt: "Docker",
+            },
+            {
+                src: "rxjs-1.svg",
+                name: "Rx Js",
+                alt: "Rx Js",
             },
         ]);
 
@@ -283,6 +352,11 @@ export default {
             sections_freelance,
             sections_testimonial,
             gotoTop,
+
+            startObservable,
+            stopObservable,
+            dataReceived,
+            receivedData,
         };
     },
 };
@@ -297,6 +371,11 @@ export default {
                 ref="sections_main"
                 class="flex-1 h-screen"
             >
+                <div>
+                    <div v-if="dataReceived" class="">
+                        <p>Coordinates: {{ receivedData }}</p>
+                    </div>
+                </div>
                 <div class="flex mt-5 mx-6 mb-0">
                     <div class="w-full sm:w-1/2 p-2 sm:p-4">
                         <div class="text-left flex flex-row flex-wrap">
@@ -320,10 +399,11 @@ export default {
                                 <label for="underline_select" class="sr-only"
                                     >Underline select</label
                                 >
+                                <!-- focus:border-gray-200 -->
                                 <select
                                     @change="gotoSection($event)"
                                     id="underline_select"
-                                    class="w-30 block py-2.5 px-2 w-full text-md text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-2 focus:border-gray-200 peer"
+                                    class="underline_select w-30 block py-2.5 px-2 w-full text-md text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none peer focus:shadow-none"
                                 >
                                     <option disabled selected>
                                         Navigate Section
@@ -834,5 +914,9 @@ export default {
 <style scoped>
 .min-height-15vh {
     min-height: 15vh;
+}
+
+#underline_select {
+    --tw-ring-shadow: 0 0 #000 !important;
 }
 </style>
