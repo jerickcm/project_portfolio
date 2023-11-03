@@ -13,6 +13,9 @@ export default {
         DropdownLink,
     },
     setup(props) {
+        const section = {
+            class: "relative",
+        };
         const website_projects = reactive([
             {
                 sitename: "Payco",
@@ -95,17 +98,17 @@ export default {
             /** Google */
             {
                 url: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                src: "/assets/img/certificate/Google Ads Display Certification _ Google.jpg",
+                src: "/assets/img/certificate/GoogleAdsDisplayCertification_Google.jpg",
                 title: "Google Ads Display Certification",
             },
             {
                 url: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                src: "/assets/img/certificate/Google Ads Search certification _ Google.jpg",
+                src: "/assets/img/certificate/GoogleAdsSearchcertification_Google.jpg",
                 title: "Google Ads Search certification",
             },
             {
                 url: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                src: "/assets/img/certificate/Google Analytics Individual Qualification _ Google.jpg",
+                src: "/assets/img/certificate/GoogleAnalyticsIndividualQualification_Google.jpg",
                 title: "Google Analytics Individual Qualification",
             },
         ]);
@@ -227,10 +230,11 @@ export default {
         const gotoTop = () => {
             sections_main.value.scrollIntoView({ behavior: "smooth" });
         };
+
         const gotoSection = (event) => {
-            console.log(event.target.value);
             switch (event.target.value) {
                 case "sections_main":
+                    sections_main.value.scrollIntoView({ behavior: "smooth" });
                     break;
                 case "sections_intro":
                     sections_intro.value.scrollIntoView({ behavior: "smooth" });
@@ -242,7 +246,6 @@ export default {
                     sections_project.value.scrollIntoView({
                         behavior: "smooth",
                     });
-
                     break;
                 case "sections_cert":
                     sections_cert.value.scrollIntoView({ behavior: "smooth" });
@@ -262,7 +265,9 @@ export default {
                     break;
             }
         };
+
         return {
+            section,
             website_projects,
             training_certificates,
             testimonial,
@@ -287,7 +292,11 @@ export default {
     <Head title="Portfolio Website" />
     <Layout>
         <div class="min-h-screen flex flex-col">
-            <section ref="sections_main" class="flex-1 h-screen">
+            <section
+                :class="section.class"
+                ref="sections_main"
+                class="flex-1 h-screen"
+            >
                 <div class="flex mt-5 mx-6 mb-0">
                     <div class="w-full sm:w-1/2 p-2 sm:p-4">
                         <div class="text-left flex flex-row flex-wrap">
@@ -314,19 +323,12 @@ export default {
                                 <select
                                     @change="gotoSection($event)"
                                     id="underline_select"
-                                    class="block py-2.5 px-2 w-full text-md text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-2 focus:border-gray-200 peer"
+                                    class="w-30 block py-2.5 px-2 w-full text-md text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-2 focus:border-gray-200 peer"
                                 >
-                                    <!-- class="space-y-2 block " -->
-
                                     <option disabled selected>
                                         Navigate Section
                                     </option>
-                                    <option
-                                        class="p-4 m-4"
-                                        value="sections_main"
-                                    >
-                                        Main
-                                    </option>
+
                                     <option value="sections_intro">
                                         Introduction
                                     </option>
@@ -347,10 +349,6 @@ export default {
                                         Testimonial
                                     </option>
                                 </select>
-                                <!-- <select
-                                    class="g-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    name="sections"
-                                ></select> -->
                             </div>
                         </div>
                     </div>
@@ -381,6 +379,7 @@ export default {
                         </div>
                     </div>
                 </div>
+
                 <div
                     class="flex flex-col justify-center items-center px-2 my-2 py-2 sm:my-8 sm:py-10"
                 >
@@ -398,8 +397,28 @@ export default {
                         I'm Engr. Jerick C. Mangalus
                     </div>
                 </div>
+                <div class="h-20"></div>
+                <div class="absolute bottom-4 right-4">
+                    <button @click="gotoTop()" class="transparent">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="blue"
+                            class="w-6 h-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
+                            />
+                        </svg>
+                    </button>
+                </div>
             </section>
             <section
+                :class="section.class"
                 ref="sections_intro"
                 class="flex-1 h-screen bg-blue-500 flex items-center justify-center"
             >
@@ -437,8 +456,30 @@ export default {
                         always welcome on this exciting journey!
                     </p>
                 </div>
+                <div class="absolute bottom-4 right-4">
+                    <button @click="gotoTop()" class="transparent">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="white"
+                            class="w-6 h-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
+                            />
+                        </svg>
+                    </button>
+                </div>
             </section>
-            <section ref="sections_skill" class="bg-emerald-200 py-5">
+            <section
+                :class="section.class"
+                ref="sections_skill"
+                class="bg-emerald-200 py-5"
+            >
                 <div class="flex flex-col justify-center">
                     <label class="text-xl text-center text-blue-950 my-2">
                         My Current Skillset
@@ -461,8 +502,26 @@ export default {
                         }}</label>
                     </div>
                 </div>
+                <div class="absolute bottom-4 right-4">
+                    <button @click="gotoTop()" class="transparent">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="gray"
+                            class="w-6 h-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
+                            />
+                        </svg>
+                    </button>
+                </div>
             </section>
-            <section ref="sections_project">
+            <section :class="section.class" ref="sections_project">
                 <div class="container mx-auto px-4">
                     <div
                         class="flex flex-col justify-center items-center my-8 py-10"
@@ -507,8 +566,30 @@ export default {
                         </div>
                     </div>
                 </div>
+                <div class="absolute bottom-4 right-4">
+                    <button @click="gotoTop()" class="transparent">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="blue"
+                            class="w-6 h-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
+                            />
+                        </svg>
+                    </button>
+                </div>
             </section>
-            <section ref="sections_cert" class="bg-blue-500 py-5">
+            <section
+                :class="section.class"
+                ref="sections_cert"
+                class="bg-blue-500 py-5"
+            >
                 <div class="container mx-auto px-4">
                     <div
                         class="flex flex-col justify-center items-center my-8 py-10"
@@ -549,8 +630,30 @@ export default {
                         </div>
                     </div>
                 </div>
+                <div class="absolute bottom-4 right-4">
+                    <button @click="gotoTop()" class="transparent">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="white"
+                            class="w-6 h-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
+                            />
+                        </svg>
+                    </button>
+                </div>
             </section>
-            <section ref="sections_freelance" class="bg-cyan-200 py-5">
+            <section
+                :class="section.class"
+                ref="sections_freelance"
+                class="bg-cyan-200 py-5"
+            >
                 <div class="flex flex-col justify-center">
                     <label class="text-xl text-center text-blue-950 my-2">
                         My Freelance Pages
@@ -574,11 +677,31 @@ export default {
                         </a>
                     </div>
                 </div>
+                <div class="absolute bottom-4 right-4">
+                    <button @click="gotoTop()" class="transparent">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="gray"
+                            class="w-6 h-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
+                            />
+                        </svg>
+                    </button>
+                </div>
             </section>
             <section
+                :class="section.class"
                 ref="sections_testimonial"
                 class="flex-1 h-screen bg-black"
             >
+                <div class="h-20"></div>
                 <div class="relative flex overflow-x-hidden">
                     <div class="py-12 animate-marquee whitespace-nowrap">
                         <div class="flex -mx-4">
@@ -652,8 +775,26 @@ export default {
                         </div>
                     </div>
                 </div>
+                <div class="absolute bottom-4 right-4">
+                    <button @click="gotoTop()" class="transparent">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="white"
+                            class="w-6 h-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
+                            />
+                        </svg>
+                    </button>
+                </div>
             </section>
-            <section class="flex-1 h-screen bg-white">
+            <section :class="section.class" class="flex-1 h-screen bg-white">
                 <div class="container mx-auto px-4">
                     <div
                         class="flex flex-col justify-center items-center mt-8 pt-10"
