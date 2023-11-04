@@ -14,6 +14,7 @@ import {
 import { Observable, Subscription } from "rxjs";
 import { BehaviorSubject, fromEvent } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import useOpenWeatherApi from "@/Composables/open_weather_api";
 
 export default {
     components: {
@@ -32,6 +33,18 @@ export default {
         document.querySelector(`head`).appendChild(thumb);
     },
     setup(props) {
+        const form = reactive({});
+        const loading = ref(true);
+        form.country_code = "ph";
+        form.city_name = "manila";
+
+        const { getWeatherByCity, weather, errors_weather, convertTimezone } =
+            useOpenWeatherApi();
+
+        const convert_timezone = (timestamp, timezone) => {
+            return convertTimezone(timestamp, timezone);
+        };
+
         const dataReceived = ref(false);
         const receivedData = ref("");
 
@@ -40,7 +53,7 @@ export default {
         let subscription;
 
         const startObservable = () => {
-            console.log("start observable");
+            // console.log("start observable");
             subscription = fromEvent(document, "mousemove")
                 .pipe(takeUntil(observable))
                 .subscribe((event) => {
@@ -50,7 +63,7 @@ export default {
         };
 
         const stopObservable = () => {
-            console.log("stop observable");
+            // console.log("stop observable");
             if (subscription) {
                 subscription.unsubscribe();
             }
@@ -64,6 +77,9 @@ export default {
             await startObservable();
             await stopObservable();
             await startObservable();
+            await getWeatherByCity({ ...form }).then(() => {
+                loading.value = false;
+            });
         });
 
         onBeforeUnmount(() => {
@@ -242,8 +258,8 @@ export default {
 
             {
                 src: "vue-9.svg",
-                name: "Vue JS 3",
-                alt: "Vue JS 3",
+                name: "Vue 3 JS",
+                alt: "Vue 3 JS",
             },
             {
                 src: "nuxt-2.svg",
@@ -357,6 +373,10 @@ export default {
             stopObservable,
             dataReceived,
             receivedData,
+
+            weather,
+            convert_timezone,
+            loading,
         };
     },
 };
@@ -478,6 +498,65 @@ export default {
                     </div>
                 </div>
                 <div class="h-20"></div>
+                <div
+                    v-if="!loading"
+                    class="left-0 bottom-0 p-4 bg-white shadow-md rounded-lg"
+                    v-for="(item, index) in weather"
+                    :key="index"
+                >
+                    <!-- Weather information content goes here -->
+                    <div class="text-lg font-semibold">Today's Weather</div>
+                    <div class="flex flex-wrap flex-row items-center">
+                        <div>
+                            <img
+                                src="/assets/img/logo/weather-color-moon-cloud-light-svgrepo-com.svg"
+                                alt="Weather Icon"
+                                class="w-8 h-8 mr-2"
+                            />
+                        </div>
+                        <div>
+                            <span>
+                                {{ item.name }} , {{ item.sys.country }},
+                                {{ parseInt(item.main.temp - 273.15) }} °C -
+                                {{
+                                    parseInt(
+                                        (item.main.temp - 273.15) * (9 / 5) + 32
+                                    )
+                                }}
+                                °F
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-gray-600">
+                            {{ item.weather[0]["main"] }} -
+                            {{ item.weather[0]["description"] }} </span
+                        ><br />
+                        <span class="text-gray-600"
+                            >Wind: {{ item.wind.speed }} m/s
+                        </span>
+                        <span class="ml-4 text-gray-600"
+                            >Humidity: {{ item.main.humidity }} %</span
+                        >
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-gray-600"
+                            >Sunrise:
+                            {{
+                                convert_timezone(
+                                    item.sys.sunrise,
+                                    item.timezone
+                                )
+                            }}</span
+                        >
+                        <span class="ml-4 text-gray-600"
+                            >Sunset:
+                            {{
+                                convert_timezone(item.sys.sunset, item.timezone)
+                            }}</span
+                        >
+                    </div>
+                </div>
                 <div class="absolute bottom-4 right-4">
                     <button @click="gotoTop()" class="transparent">
                         <svg

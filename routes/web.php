@@ -5,6 +5,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+/** api controller*/
+
+use App\Http\Controllers\Api\OpenWeatherController as ApiOpenWeatherController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +23,10 @@ use Inertia\Inertia;
 
 Route::name('homepage')->get('/', function () {
     return Inertia::render('Index', []);
+});
+
+Route::group(['prefix' => 'api', 'middleware' => ['throttle:500,1']], function () {
+    Route::name('weather-get-of-city')->post('/get-weather-of-city', [ApiOpenWeatherController::class, 'show']);
 });
 
 // Route::name('about')->get('/about', function () {
