@@ -34,18 +34,39 @@ export default {
                             class="text-blue-400 hover:text-blue-200 mr-4"
                             >Home</Link
                         >
-                        <!-- <Link
-                            :href="route('about')"
-                            class="text-blue-400 hover:text-blue-200 mr-4"
-                            >About Us</Link
-                        > -->
-                        <!-- <img
-                            class="text-blue-400 hover:text-blue-200 mr-4"
-                            src="/assets/img/rocket12.png"
-                            alt="rocket launch"
-                        /> -->
                     </div>
-                    <div></div>
+                    <div class="p-1">
+                        <p>E-mail : jerickmangalus@engrjerick.com</p>
+                        <p>Contact Number : +63-977-622-9501</p>
+                    </div>
+                </div>
+                <div class="container mx-auto">
+                    <div
+                        class="flex flex-wrap flex-row justify-center items-center"
+                    >
+                        <div class="p-4">
+                            <a
+                                href="https://www.facebook.com/engrjerick"
+                                target="_blank"
+                            >
+                                <img
+                                    class="h-10"
+                                    src="/assets/img/logo/facebook-3-2.svg"
+                                />
+                            </a>
+                        </div>
+                        <div class="p-4">
+                            <a
+                                href="https://www.linkedin.com/in/jerick-mangalus-92066499/"
+                                target="_blank"
+                            >
+                                <img
+                                    class="h-10"
+                                    src="/assets/img/logo/linkedin-icon-2.svg"
+                                />
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </footer>
         </div>
@@ -61,7 +82,7 @@ export default {
     background-repeat: no-repeat;
 }
 footer {
-    height: 100px;
+    height: 230px;
     width: 100%;
     position: absolute;
     left: 0;

@@ -12,6 +12,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
     <!-- Scripts -->
+    <meta name="thumbnail" content="/assets/img/index.jpg">
     <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];

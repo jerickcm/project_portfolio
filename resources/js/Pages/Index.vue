@@ -15,6 +15,7 @@ import { Observable, Subscription } from "rxjs";
 import { BehaviorSubject, fromEvent } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import useOpenWeatherApi from "@/Composables/open_weather_api";
+import useHeaders from "@/Mixins/table_headers";
 
 export default {
     components: {
@@ -35,8 +36,11 @@ export default {
     setup(props) {
         const form = reactive({});
         const loading = ref(true);
+        const rows_per_page = ref(2);
         form.country_code = "ph";
         form.city_name = "manila";
+
+        const { headers_certificate } = useHeaders();
 
         const { getWeatherByCity, weather, errors_weather, convertTimezone } =
             useOpenWeatherApi();
@@ -145,51 +149,58 @@ export default {
                 url: "https://www.udemy.com/certificate/UC-3142d35c-73ad-46f8-9734-c9f5d669f18a/",
                 src: "/assets/img/certificate/UC-3142d35c-73ad-46f8-9734-c9f5d669f18a.jpg",
                 title: "AZ-900 Bootcamp: Microsoft Azure Fundamentals (OCT 2023)",
+                url2: "https://www.udemy.com/certificate/UC-dbaa6490-1a6c-4553-bd2c-4751ab7b07c1/",
+                src2: "/assets/img/certificate/UC-dbaa6490-1a6c-4553-bd2c-4751ab7b07c1.jpg",
+                title2: "PHP with Laravel for beginners - Become a Master in Laravel",
+                url3: "https://www.udemy.com/certificate/UC-735b5ac5-d6fc-4260-a51a-391b2e40b3e5/",
+                src3: "/assets/img/certificate/UC-735b5ac5-d6fc-4260-a51a-391b2e40b3e5.jpg",
+                title3: "Master Course : CC - Certified in Cybersecurity",
             },
-            {
-                url: "https://www.udemy.com/certificate/UC-dbaa6490-1a6c-4553-bd2c-4751ab7b07c1/",
-                src: "/assets/img/certificate/UC-dbaa6490-1a6c-4553-bd2c-4751ab7b07c1.jpg",
-                title: "PHP with Laravel for beginners - Become a Master in Laravel",
-            },
-            {
-                url: "https://www.udemy.com/certificate/UC-735b5ac5-d6fc-4260-a51a-391b2e40b3e5/",
-                src: "/assets/img/certificate/UC-735b5ac5-d6fc-4260-a51a-391b2e40b3e5.jpg",
-                title: "Master Course : CC - Certified in Cybersecurity",
-            },
-
             {
                 url: "https://www.udemy.com/certificate/UC-6c132fd1-8089-424b-a33a-931ec06c1b3b/",
                 src: "/assets/img/certificate/UC-6c132fd1-8089-424b-a33a-931ec06c1b3b.jpg",
                 title: "Project Management Crash Course in 60 Minutes",
+                url2: "https://www.udemy.com/certificate/UC-a9104c52-224f-4bc8-8f91-c241e1c93951/",
+                src2: "/assets/img/certificate/UC-a9104c52-224f-4bc8-8f91-c241e1c93951.jpg",
+                title2: "React 18 Tutorial and Projects Course (2023)",
+                url3: "https://www.udemy.com/certificate/UC-edaefdd0-8a94-4538-b760-54683d30fc35/",
+                src3: "/assets/img/certificate/UC-edaefdd0-8a94-4538-b760-54683d30fc35.jpg",
+                title3: "Slack the ultimate guide (2022)",
             },
 
-            {
-                url: "https://www.udemy.com/certificate/UC-a9104c52-224f-4bc8-8f91-c241e1c93951/",
-                src: "/assets/img/certificate/UC-a9104c52-224f-4bc8-8f91-c241e1c93951.jpg",
-                title: "React 18 Tutorial and Projects Course (2023)",
-            },
-            {
-                url: "https://www.udemy.com/certificate/UC-edaefdd0-8a94-4538-b760-54683d30fc35/",
-                src: "/assets/img/certificate/UC-edaefdd0-8a94-4538-b760-54683d30fc35.jpg",
-                title: "Slack the ultimate guide (2022)",
-            },
-            //
-            /** Google */
             {
                 url: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
                 src: "/assets/img/certificate/GoogleAdsDisplayCertification_Google.jpg",
                 title: "Google Ads Display Certification",
+                url2: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
+                src2: "/assets/img/certificate/GoogleAdsSearchcertification_Google.jpg",
+                title2: "Google Ads Search certification",
+                url3: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
+                src3: "/assets/img/certificate/GoogleAnalyticsIndividualQualification_Google.jpg",
+                title3: "Google Analytics Individual Qualification",
             },
             {
-                url: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                src: "/assets/img/certificate/GoogleAdsSearchcertification_Google.jpg",
-                title: "Google Ads Search certification",
+                url: "https://www.udemy.com/certificate/UC-d8cdf10a-62f9-493b-bc1b-e697fb2d5ab5/",
+                src: "/assets/img/certificate/UC-d8cdf10a-62f9-493b-bc1b-e697fb2d5ab5.jpg",
+                title: "Master Course : Google Cloud Professional Cloud Architect",
+                url2: "",
+                src2: "",
+                title2: "",
+                url3: "",
+                src3: "",
+                title3: "",
             },
-            {
-                url: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                src: "/assets/img/certificate/GoogleAnalyticsIndividualQualification_Google.jpg",
-                title: "Google Analytics Individual Qualification",
-            },
+            // {
+            //     url: "",
+            //     src: "",
+            //     title: "",
+            //     url2: "",
+            //     src2: "",
+            //     title2: "",
+            //     url3: "",
+            //     src3: "",
+            //     title3: "",
+            // },
         ]);
         const testimonial = reactive([
             {
@@ -377,6 +388,9 @@ export default {
             weather,
             convert_timezone,
             loading,
+
+            headers_certificate,
+            rows_per_page
         };
     },
 };
@@ -747,11 +761,11 @@ export default {
             <section
                 :class="section.class"
                 ref="sections_cert"
-                class="bg-blue-500 py-5"
+                class="bg-blue-500 py-5 pb-20"
             >
                 <div class="container mx-auto px-4">
                     <div
-                        class="flex flex-col justify-center items-center my-8 py-10"
+                        class="flex flex-col justify-center items-center py-10"
                     >
                         <label
                             class="text-white text-3xl mt-4 text-center font-bold my-5 underline underline-offset-8"
@@ -759,7 +773,157 @@ export default {
                             Training and Certificates
                         </label>
                     </div>
-                    <div class="flex flex-wrap">
+                    <div class="mb-50">
+                        <EasyDataTable
+                            :headers="headers_certificate"
+                            :items="training_certificates"
+                            table-class-name="customize-table-blue"
+                            :rows-items="[1, 2, 5, 10]"
+                            :rows-per-page="rows_per_page"
+                        >
+                            <template #expand="item">
+                                <div class="flex flex-wrap flex-col">
+                                    <div
+                                        class="bg-blue-500 rounded-lg shadow-lg border-2 border-gray-400 transition-transform transform hover:border-white hover:bg-blue-400"
+                                    >
+                                        <a :href="item.url">
+                                            <div class="p-4">
+                                                <div class="mb-4">
+                                                    <img
+                                                        :src="item.src"
+                                                        target="_blank"
+                                                        :alt="item.src"
+                                                        class="rounded-lg"
+                                                    />
+                                                </div>
+                                                <h3
+                                                    class="text-xl font-semibold text-white"
+                                                >
+                                                    {{ item.title }}
+                                                </h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div
+                                        v-if="item.url2 != ''"
+                                        class="bg-blue-500 rounded-lg shadow-lg border-2 border-gray-400 transition-transform transform hover:border-white hover:bg-blue-400"
+                                    >
+                                        <a :href="item.url2">
+                                            <div class="p-4">
+                                                <div class="mb-4">
+                                                    <img
+                                                        :src="item.src2"
+                                                        target="_blank"
+                                                        :alt="item.src2"
+                                                        class="rounded-lg"
+                                                    />
+                                                </div>
+                                                <h3
+                                                    class="text-xl font-semibold text-white"
+                                                >
+                                                    {{ item.title2 }}
+                                                </h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div
+                                        v-if="item.url3 != ''"
+                                        class="bg-blue-500 rounded-lg shadow-lg border-2 border-gray-400 transition-transform transform hover:border-white hover:bg-blue-400"
+                                    >
+                                        <a :href="item.url2">
+                                            <div class="p-4">
+                                                <div class="mb-4">
+                                                    <img
+                                                        :src="item.src3"
+                                                        target="_blank"
+                                                        :alt="item.src3"
+                                                        class="rounded-lg"
+                                                    />
+                                                </div>
+                                                <h3
+                                                    class="text-xl font-semibold text-white"
+                                                >
+                                                    {{ item.title3 }}
+                                                </h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </template>
+                            <template #item-box="item">
+                                <div
+                                    class="bg-blue-500 rounded-lg shadow-lg border-2 border-gray-400 transition-transform transform hover:border-white hover:bg-blue-400"
+                                >
+                                    <a :href="item.url">
+                                        <div class="p-4">
+                                            <div class="mb-4">
+                                                <img
+                                                    :src="item.src"
+                                                    target="_blank"
+                                                    :alt="item.src"
+                                                    class="rounded-lg"
+                                                />
+                                            </div>
+                                            <h3
+                                                class="text-xl font-semibold text-white"
+                                            >
+                                                {{ item.title }}
+                                            </h3>
+                                        </div>
+                                    </a>
+                                </div>
+                            </template>
+                            <template #item-box2="item">
+                                <div
+                                    v-if="item.url2 != ''"
+                                    class="bg-blue-500 rounded-lg shadow-lg border-2 border-gray-400 transition-transform transform hover:border-white hover:bg-blue-400"
+                                >
+                                    <a :href="item.url2">
+                                        <div class="p-4">
+                                            <div class="mb-4">
+                                                <img
+                                                    :src="item.src2"
+                                                    target="_blank"
+                                                    :alt="item.src2"
+                                                    class="rounded-lg"
+                                                />
+                                            </div>
+                                            <h3
+                                                class="text-xl font-semibold text-white"
+                                            >
+                                                {{ item.title2 }}
+                                            </h3>
+                                        </div>
+                                    </a>
+                                </div>
+                            </template>
+                            <template #item-box3="item">
+                                <div
+                                    v-if="item.url3 != ''"
+                                    class="bg-blue-500 rounded-lg shadow-lg border-2 border-gray-400 transition-transform transform hover:border-white hover:bg-blue-400"
+                                >
+                                    <a :href="item.url3">
+                                        <div class="p-4">
+                                            <div class="mb-4">
+                                                <img
+                                                    :src="item.src3"
+                                                    target="_blank"
+                                                    :alt="item.src3"
+                                                    class="rounded-lg"
+                                                />
+                                            </div>
+                                            <h3
+                                                class="text-xl font-semibold text-white"
+                                            >
+                                                {{ item.title3 }}
+                                            </h3>
+                                        </div>
+                                    </a>
+                                </div>
+                            </template>
+                        </EasyDataTable>
+                    </div>
+                    <div class="flex flex-wrap hidden">
                         <div
                             class="w-full lg:w-1/3 md:w-1/2 sm:w-full p-4 px-1 py-1 sm:px-4 sm:py-4"
                             v-for="(item, index) in training_certificates"
@@ -989,7 +1153,7 @@ export default {
         </div>
     </Layout>
 </template>
-
+<style scoped src="@/Assets/css/table_blue.css"></style>
 <style scoped>
 .min-height-15vh {
     min-height: 15vh;
@@ -997,5 +1161,10 @@ export default {
 
 #underline_select {
     --tw-ring-shadow: 0 0 #000 !important;
+}
+
+.vue3-easy-data-table__main .fixed-header {
+    padding-bottom: 200px;
+    margin-bottom: 200px;
 }
 </style>
