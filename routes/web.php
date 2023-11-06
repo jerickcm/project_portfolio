@@ -9,6 +9,7 @@ use Inertia\Inertia;
 /** api controller*/
 
 use App\Http\Controllers\Api\OpenWeatherController as ApiOpenWeatherController;
+use App\Http\Controllers\Api\ContentController as ApiContentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::name('homepage')->get('/', function () {
 
 Route::group(['prefix' => 'api', 'middleware' => ['throttle:500,1']], function () {
     Route::name('weather-get-of-city')->post('/get-weather-of-city', [ApiOpenWeatherController::class, 'show']);
+    Route::name('get-personal-content')->get('/get-personal-content', [ApiContentController::class, 'personal_data']);
+    Route::name('get-personal-socials')->get('/get-personal-socials', [ApiContentController::class, 'socials']);
 });
 
 // Route::name('about')->get('/about', function () {

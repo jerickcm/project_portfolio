@@ -15,6 +15,7 @@ import { Observable, Subscription } from "rxjs";
 import { BehaviorSubject, fromEvent } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import useOpenWeatherApi from "@/Composables/open_weather_api";
+import usePersonalData from "@/Composables/personaldata_api";
 import useHeaders from "@/Mixins/table_headers";
 
 export default {
@@ -27,7 +28,6 @@ export default {
         Observable,
     },
     beforeCreate() {
-        // Add thumbnail image to head section
         let thumb = document.createElement("META");
         thumb.setAttribute("name", "thumbnail");
         thumb.setAttribute("content", "/assets/img/index.jpg");
@@ -41,6 +41,7 @@ export default {
         form.city_name = "manila";
 
         const { headers_certificate } = useHeaders();
+        const { getPersonalContent, personal_data } = usePersonalData();
 
         const { getWeatherByCity, weather, errors_weather, convertTimezone } =
             useOpenWeatherApi();
@@ -57,7 +58,6 @@ export default {
         let subscription;
 
         const startObservable = () => {
-            // console.log("start observable");
             subscription = fromEvent(document, "mousemove")
                 .pipe(takeUntil(observable))
                 .subscribe((event) => {
@@ -67,7 +67,6 @@ export default {
         };
 
         const stopObservable = () => {
-            // console.log("stop observable");
             if (subscription) {
                 subscription.unsubscribe();
             }
@@ -84,236 +83,16 @@ export default {
             await getWeatherByCity({ ...form }).then(() => {
                 loading.value = false;
             });
+            await getPersonalContent();
         });
 
         onBeforeUnmount(() => {
             stopObservable();
         });
-        // startObservable();
+
         const section = {
             class: "relative",
         };
-        const website_projects = reactive([
-            {
-                sitename: "Payco",
-                image: "payco.jpg",
-                url: "https://www.pay.co/",
-                contribution: "",
-            },
-            {
-                sitename: "ForexMart",
-                image: "forexmart.jpg",
-                url: "https://www.forexmart.com/",
-                contribution: "",
-            },
-            {
-                sitename: "Binary Instaforex",
-                image: "binaryinstaforex.jpg",
-                url: "https://binary.instaforex.com/",
-                contribution: "",
-            },
-            {
-                sitename: "E27.co",
-                image: "e27.jpg",
-                url: "https://e27.co/",
-                contribution: "",
-            },
-            {
-                sitename: "Orsat",
-                image: "orsat.jpg",
-                url: "https://orsatmax.com/",
-                contribution: "",
-            },
-            {
-                sitename: "CSWDO Malolos Database",
-                image: "cswdo.jpg",
-                url: "https://cswdo.engrjerick.com/",
-                contribution: "",
-            },
-            {
-                sitename: "Saipan Dol Workforce",
-                image: "cnmidol.jpg",
-                url: "https://www.cnmidol.com/",
-                contribution: "",
-            },
-            {
-                sitename: "Japan Travel Information",
-                image: "travelinfo.jpg",
-                url: "https://travelinfo.engrjerick.com/",
-                contribution: "",
-            },
-        ]);
-        const training_certificates = reactive([
-            /** Udemy */
-            {
-                url: "https://www.udemy.com/certificate/UC-3142d35c-73ad-46f8-9734-c9f5d669f18a/",
-                src: "/assets/img/certificate/UC-3142d35c-73ad-46f8-9734-c9f5d669f18a.jpg",
-                title: "AZ-900 Bootcamp: Microsoft Azure Fundamentals (OCT 2023)",
-                url2: "https://www.udemy.com/certificate/UC-dbaa6490-1a6c-4553-bd2c-4751ab7b07c1/",
-                src2: "/assets/img/certificate/UC-dbaa6490-1a6c-4553-bd2c-4751ab7b07c1.jpg",
-                title2: "PHP with Laravel for beginners - Become a Master in Laravel",
-                url3: "https://www.udemy.com/certificate/UC-735b5ac5-d6fc-4260-a51a-391b2e40b3e5/",
-                src3: "/assets/img/certificate/UC-735b5ac5-d6fc-4260-a51a-391b2e40b3e5.jpg",
-                title3: "Master Course : CC - Certified in Cybersecurity",
-            },
-            {
-                url: "https://www.udemy.com/certificate/UC-6c132fd1-8089-424b-a33a-931ec06c1b3b/",
-                src: "/assets/img/certificate/UC-6c132fd1-8089-424b-a33a-931ec06c1b3b.jpg",
-                title: "Project Management Crash Course in 60 Minutes",
-                url2: "https://www.udemy.com/certificate/UC-a9104c52-224f-4bc8-8f91-c241e1c93951/",
-                src2: "/assets/img/certificate/UC-a9104c52-224f-4bc8-8f91-c241e1c93951.jpg",
-                title2: "React 18 Tutorial and Projects Course (2023)",
-                url3: "https://www.udemy.com/certificate/UC-edaefdd0-8a94-4538-b760-54683d30fc35/",
-                src3: "/assets/img/certificate/UC-edaefdd0-8a94-4538-b760-54683d30fc35.jpg",
-                title3: "Slack the ultimate guide (2022)",
-            },
-
-            {
-                url: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                src: "/assets/img/certificate/GoogleAdsDisplayCertification_Google.jpg",
-                title: "Google Ads Display Certification",
-                url2: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                src2: "/assets/img/certificate/GoogleAdsSearchcertification_Google.jpg",
-                title2: "Google Ads Search certification",
-                url3: "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                src3: "/assets/img/certificate/GoogleAnalyticsIndividualQualification_Google.jpg",
-                title3: "Google Analytics Individual Qualification",
-            },
-            {
-                url: "https://www.udemy.com/certificate/UC-d8cdf10a-62f9-493b-bc1b-e697fb2d5ab5/",
-                src: "/assets/img/certificate/UC-d8cdf10a-62f9-493b-bc1b-e697fb2d5ab5.jpg",
-                title: "Master Course : Google Cloud Professional Cloud Architect",
-                url2: "",
-                src2: "",
-                title2: "",
-                url3: "",
-                src3: "",
-                title3: "",
-            },
-            // {
-            //     url: "",
-            //     src: "",
-            //     title: "",
-            //     url2: "",
-            //     src2: "",
-            //     title2: "",
-            //     url3: "",
-            //     src3: "",
-            //     title3: "",
-            // },
-        ]);
-        const testimonial = reactive([
-            {
-                message: " Delivered outstanding results.",
-                author: "",
-                role: "",
-            },
-            {
-                message: "Will be working with him again.",
-                author: "Ms. Candy Feliciano",
-                role: "CNMI DOL Operations- Mariana Island",
-            },
-            {
-                message: "Top-notch solutions and a pleasure to work with.",
-                author: "",
-                role: "",
-            },
-            {
-                message: "Innovative solutions and exceptional support.",
-                author: "",
-                role: "",
-            },
-            {
-                message: "Highly skilled and professional.",
-                author: "",
-                role: "",
-            },
-        ]);
-        const freelance = reactive([
-            {
-                src: "upwork.svg",
-                name: "Upwork",
-                alt: "Upwork",
-                url: "https://www.upwork.com/freelancers/~015515782763c14dc3",
-            },
-            {
-                src: "fiverr-2.svg",
-                name: "Fiverr",
-                alt: "Fiverr",
-                url: "https://www.fiverr.com/jerickmangalus",
-            },
-        ]);
-        const techlogo = reactive([
-            {
-                src: "python-5.svg",
-                name: "Phyton",
-                alt: "Phyton",
-            },
-
-            {
-                src: "wordpress-icon.svg",
-                name: "WordPress",
-                alt: "WordPress",
-            },
-
-            {
-                src: "codeigniter-2.svg",
-                name: "CodeIgniter",
-                alt: "CodeIgniter",
-            },
-            {
-                src: "laravel-2.svg",
-                name: "Laravel ",
-                alt: "Laravel",
-            },
-
-            {
-                src: "vue-9.svg",
-                name: "Vue 3 JS",
-                alt: "Vue 3 JS",
-            },
-            {
-                src: "nuxt-2.svg",
-                name: "Nuxt Js",
-                alt: "Nuxt Js",
-            },
-            {
-                src: "react-2.svg",
-                name: "React Js",
-                alt: "React Js",
-            },
-
-            {
-                src: "ubuntu-icon.svg",
-                name: "Ubuntu",
-                alt: "Ubuntu",
-            },
-            {
-                src: "centos.svg",
-                name: "CentOS",
-                alt: "CentOS",
-            },
-            {
-                src: "nginx-1.svg",
-                name: "Nginx",
-                alt: "Nginx",
-            },
-            {
-                src: "apache-13.svg",
-                name: "Apache",
-                alt: "Apache",
-            },
-            {
-                src: "docker-3.svg",
-                name: "Docker",
-                alt: "Docker",
-            },
-            {
-                src: "rxjs-1.svg",
-                name: "Rx Js",
-                alt: "Rx Js",
-            },
-        ]);
 
         const sections_main = ref([]);
         const sections_intro = ref([]);
@@ -364,11 +143,7 @@ export default {
 
         return {
             section,
-            website_projects,
-            training_certificates,
-            testimonial,
-            techlogo,
-            freelance,
+
             gotoSection,
 
             sections_main,
@@ -390,7 +165,8 @@ export default {
             loading,
 
             headers_certificate,
-            rows_per_page
+            rows_per_page,
+            personal_data,
         };
     },
 };
@@ -658,9 +434,12 @@ export default {
                         My Current Skillset
                     </label>
                 </div>
-                <div class="flex flex-row flex-wrap justify-center">
+                <div
+                    class="flex flex-row flex-wrap justify-center"
+                    v-if="personal_data.techlogo != null"
+                >
                     <div
-                        v-for="(logo, index) in techlogo"
+                        v-for="(logo, index) in personal_data.techlogo"
                         :key="index"
                         class="py-2 px-2 m-2 text-center"
                     >
@@ -706,10 +485,13 @@ export default {
                         </label>
                     </div>
 
-                    <div class="flex flex-wrap">
+                    <div
+                        class="flex flex-wrap"
+                        v-if="personal_data.websites != null"
+                    >
                         <div
                             class="w-full lg:w-1/3 md:w-1/2 sm:w-full p-4 px-1 py-1 sm:px-4 sm:py-4"
-                            v-for="(item, index) in website_projects"
+                            v-for="(item, index) in personal_data.websites"
                             :key="index"
                         >
                             <div
@@ -773,10 +555,13 @@ export default {
                             Training and Certificates
                         </label>
                     </div>
-                    <div class="mb-50">
+                    <div
+                        class="mb-50"
+                        v-if="personal_data.certificates != null"
+                    >
                         <EasyDataTable
                             :headers="headers_certificate"
-                            :items="training_certificates"
+                            :items="personal_data.certificates"
                             table-class-name="customize-table-blue"
                             :rows-items="[1, 2, 5, 10]"
                             :rows-per-page="rows_per_page"
@@ -923,35 +708,6 @@ export default {
                             </template>
                         </EasyDataTable>
                     </div>
-                    <div class="flex flex-wrap hidden">
-                        <div
-                            class="w-full lg:w-1/3 md:w-1/2 sm:w-full p-4 px-1 py-1 sm:px-4 sm:py-4"
-                            v-for="(item, index) in training_certificates"
-                            :key="index"
-                        >
-                            <div
-                                class="bg-blue-500 rounded-lg shadow-lg border-2 border-gray-400 transition-transform transform hover:border-white hover:bg-blue-400"
-                            >
-                                <a :href="item.url">
-                                    <div class="p-4">
-                                        <div class="mb-4">
-                                            <img
-                                                :src="item.src"
-                                                target="_blank"
-                                                alt="Image Alt Text"
-                                                class="w-full h-auto rounded-lg"
-                                            />
-                                        </div>
-                                        <h3
-                                            class="text-xl font-semibold text-white"
-                                        >
-                                            {{ item.title }}
-                                        </h3>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="absolute bottom-4 right-4">
                     <button @click="gotoTop()" class="transparent">
@@ -982,9 +738,12 @@ export default {
                         My Freelance Pages
                     </label>
                 </div>
-                <div class="flex flex-row flex-wrap justify-center">
+                <div
+                    class="flex flex-row flex-wrap justify-center"
+                    v-if="personal_data.freelance != null"
+                >
                     <div
-                        v-for="(logo, index) in freelance"
+                        v-for="(logo, index) in personal_data.freelance"
                         :key="index"
                         class="py-2 px-2 m-2 text-center"
                     >
@@ -1027,10 +786,15 @@ export default {
                 <div class="h-20"></div>
                 <div class="relative flex overflow-x-hidden">
                     <div class="py-12 animate-marquee whitespace-nowrap">
-                        <div class="flex -mx-4">
+                        <div
+                            class="flex -mx-4"
+                            v-if="personal_data.testimonials != null"
+                        >
                             <div
                                 class="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 m-2"
-                                v-for="(item, index) in testimonial"
+                                v-for="(
+                                    item, index
+                                ) in personal_data.testimonials"
                             >
                                 <div
                                     class="border-2 bg-gray-900 p-6 rounded-lg shadow-lg"
@@ -1064,10 +828,15 @@ export default {
                     <div
                         class="absolute top-0 py-12 animate-marquee2 whitespace-nowrap"
                     >
-                        <div class="flex -mx-4">
+                        <div
+                            class="flex -mx-4"
+                            v-if="personal_data.testimonials != null"
+                        >
                             <div
                                 class="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 m-2"
-                                v-for="(item, index) in testimonial"
+                                v-for="(
+                                    item, index
+                                ) in personal_data.testimonials"
                             >
                                 <div
                                     class="border-2 bg-gray-900 p-6 rounded-lg shadow-lg"
@@ -1098,7 +867,7 @@ export default {
                         </div>
                     </div>
                 </div>
-                <div class="absolute bottom-4 right-4">
+                <div class="absolute bottom-4s right-4">
                     <button @click="gotoTop()" class="transparent">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

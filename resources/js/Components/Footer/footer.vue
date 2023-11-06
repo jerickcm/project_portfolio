@@ -1,13 +1,18 @@
 <script>
-import { Head, Link } from "@inertiajs/vue3";
-
+import { Link } from "@inertiajs/vue3";
+import { onMounted } from "vue";
+import usePersonalData from "./../../Composables/personaldata_api";
 export default {
-    data: () => ({}),
-
     components: {
         Link,
     },
-    setup(props, context) {},
+    setup() {
+        const { getSocials, footer } = usePersonalData();
+        onMounted(async () => {
+            await getSocials();
+        });
+        return { footer };
+    },
 };
 </script>
 <template>
@@ -35,35 +40,23 @@ export default {
                             >Home</Link
                         >
                     </div>
-                    <div class="p-1">
-                        <p>E-mail : jerickmangalus@engrjerick.com</p>
-                        <p>Contact Number : +63-977-622-9501</p>
+                    <div class="p-1" v-if="footer.socials != null">
+                        <p>E-mail : {{ footer.email }}</p>
+                        <p>Contact Number :{{ footer.contact_number }}</p>
                     </div>
                 </div>
                 <div class="container mx-auto">
                     <div
                         class="flex flex-wrap flex-row justify-center items-center"
+                        v-if="footer.socials != null"
                     >
-                        <div class="p-4">
-                            <a
-                                href="https://www.facebook.com/engrjerick"
-                                target="_blank"
-                            >
-                                <img
-                                    class="h-10"
-                                    src="/assets/img/logo/facebook-3-2.svg"
-                                />
-                            </a>
-                        </div>
-                        <div class="p-4">
-                            <a
-                                href="https://www.linkedin.com/in/jerick-mangalus-92066499/"
-                                target="_blank"
-                            >
-                                <img
-                                    class="h-10"
-                                    src="/assets/img/logo/linkedin-icon-2.svg"
-                                />
+                        <div
+                            class="p-4"
+                            v-for="(foot, index) in footer.socials"
+                            :key="index"
+                        >
+                            <a :href="foot.url" target="_blank">
+                                <img class="h-10" :src="foot.src" />
                             </a>
                         </div>
                     </div>
