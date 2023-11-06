@@ -35,9 +35,9 @@ I welcome feedback and contributions from the community. If you find any issues 
 
 Feel free to get in touch with me through the following channels:
 
-- Email: [Your Email Address]
-- LinkedIn: [Your LinkedIn Profile]
-- GitHub: [Your GitHub Profile]
+- Email: [jerickmangalus@engrjerick.com]
+- LinkedIn: [https://www.linkedin.com/in/jerick-mangalus-92066499/]
+- GitHub: [https://github.com/jerickcm]
 
 Thank you for visiting my portfolio website! I hope you find it informative and inspiring.
 

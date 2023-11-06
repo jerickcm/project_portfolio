@@ -274,7 +274,7 @@ class ContentController extends Controller
                 'social' => 'facebook'
             ],
             [
-                "url" => "https://www.facebook.com/engrjerick",
+                "url" => "https://www.linkedin.com/in/jerick-mangalus-92066499/",
                 "src" => "/assets/img/logo/linkedin-icon-2.svg",
                 'social' => 'linkedin'
             ],
