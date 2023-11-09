@@ -25,6 +25,9 @@ use App\Http\Controllers\Api\ContentController as ApiContentController;
 Route::name('homepage')->get('/', function () {
     return Inertia::render('Index', []);
 });
+Route::name('about')->get('/about', function () {
+    return Inertia::render('About', []);
+});
 
 Route::group(['prefix' => 'api', 'middleware' => ['throttle:500,1']], function () {
     Route::name('weather-get-of-city')->post('/get-weather-of-city', [ApiOpenWeatherController::class, 'show']);

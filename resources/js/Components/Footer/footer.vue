@@ -39,6 +39,11 @@ export default {
                             class="text-blue-400 hover:text-blue-200 mr-4"
                             >Home</Link
                         >
+                        <Link
+                            :href="route('about')"
+                            class="text-blue-400 hover:text-blue-200 mr-4"
+                            >About</Link
+                        >
                     </div>
                     <div class="p-1" v-if="footer.socials != null">
                         <p>E-mail : {{ footer.email }}</p>

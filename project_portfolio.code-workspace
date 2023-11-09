@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../project_travelinfo"
+		},
+		{
+			"path": "../../notes"
+		}
+	],
+	"settings": {}
+}

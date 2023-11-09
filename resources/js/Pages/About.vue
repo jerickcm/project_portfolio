@@ -14,7 +14,7 @@ export default {
 </script>
 <template>
     <Layout>
-        <Head title="About | Japan Travel Information" />
+        <Head title="About | Jerick C. Mangalus" />
 
         <div class="article-page bg-gray-100 p-4">
             <nav class="flex my-2" aria-label="Breadcrumb">
@@ -55,32 +55,35 @@ export default {
                                 About Us
                             </legend>
                             <section class="mb-8">
-                                <h2 class="text-2xl font-semibold mb-4">
-                                    Our Mission
-                                </h2>
+                                <h1>
+                                    My Mission as a Web Developer and Freelancer
+                                </h1>
                                 <p>
-                                    We are passionate about providing travelers
-                                    with up-to-date and comprehensive
-                                    information about the beautiful cities of
-                                    Tokyo, Yokohama, Kyoto, Osaka, Sapporo and
-                                    Nagoya,. Our mission is to help you plan
-                                    your perfect trip by offering detailed
-                                    guides, itineraries, and valuable insights
-                                    into each destination.
+                                    My mission is to create innovative web
+                                    solutions using Vue.js and Laravel. I'm
+                                    dedicated to:
                                 </p>
-                            </section>
-
-                            <section class="mb-8">
-                                <h2 class="text-2xl font-semibold mb-4">
-                                    Our Team
-                                </h2>
+                                <ul>
+                                    <li>
+                                        Empowering businesses and individuals
+                                        with cutting-edge web applications.
+                                    </li>
+                                    <li>
+                                        Designing user-centric, reliable, and
+                                        secure solutions.
+                                    </li>
+                                    <li>
+                                        Optimizing performance and delivering on
+                                        time and within budget.
+                                    </li>
+                                    <li>
+                                        Promoting continuous learning and
+                                        community knowledge sharing.
+                                    </li>
+                                </ul>
                                 <p>
-                                    We are a team of travel enthusiasts who love
-                                    exploring and sharing our experiences. Our
-                                    dedicated writers and researchers are
-                                    committed to bringing you the latest and
-                                    most accurate information to make your
-                                    travel dreams come true.
+                                    By embracing these principles, my mission is
+                                    to be a trusted partner for digital success.
                                 </p>
                             </section>
 
@@ -92,12 +95,12 @@ export default {
                                     If you have any questions, suggestions, or
                                     feedback, please don't hesitate to
                                     <a
-                                        href="mailto:contact@japan-travel.com"
+                                        href="mailto:jerickmangalus@engrjerick.com"
                                         class="text-blue-500 hover:text-blue-700"
-                                        >get in touch with us</a
+                                        >get in touch with me</a
                                     >
-                                    . We value your input and are here to assist
-                                    you in planning your dream trip.
+                                    . I value your input and are here to assist
+                                    you.
                                 </p>
                             </section>
                         </fieldset>

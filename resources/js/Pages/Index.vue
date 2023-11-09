@@ -5,11 +5,15 @@ import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 import {
     ref,
-    onMounted,
     reactive,
-    onBeforeUnmount,
     watch,
     computed,
+
+    // lifecycle hooks
+    onMounted,
+    onBeforeUnmount,
+    onServerPrefetch,
+
 } from "vue";
 import { Observable, Subscription } from "rxjs";
 import { BehaviorSubject, fromEvent } from "rxjs";
@@ -75,7 +79,15 @@ export default {
             dataReceived.value = false;
             receivedData.value = "";
         };
-
+        onServerPrefetch(async () => {
+            await startObservable();
+            await stopObservable();
+            await startObservable();
+            await getWeatherByCity({ ...form }).then(() => {
+                loading.value = false;
+            });
+            await getPersonalContent();
+        })
         onMounted(async () => {
             await startObservable();
             await stopObservable();

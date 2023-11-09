@@ -12,6 +12,30 @@ class ContentController extends Controller
 
         $training_certificates = [
             [
+                "url" => "https://courses.cognitiveclass.ai/certificates/465f267f2d494d9a96e65f4ef97c872a",
+                "src" => "/assets/img/certificate/IBM_CO0101EN_Certificate_Cognitive Class.png",
+                "title" => "Docker Essentials: A Developer Introduction",
+                "url2" => "https://www.udemy.com/certificate/UC-15129888-bae2-448d-b6b1-5277e131f8e2/",
+                "src2" => "/assets/img/certificate/UC-a290868c-4777-4ae2-af45-8697b4df8ce5.jpg",
+                "title2" => "Wordpress Beginners Guide Site Speed Optimization Made Easy",
+                "url3" => "https://www.udemy.com/certificate/UC-15129888-bae2-448d-b6b1-5277e131f8e2/",
+                "src3" => "/assets/img/certificate/UC-15129888-bae2-448d-b6b1-5277e131f8e2.jpg",
+                "title3" => "Excel for Marketers",
+
+            ],
+
+            [
+                "url" => "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
+                "src" => "/assets/img/certificate/GoogleAdsDisplayCertification_Google.jpg",
+                "title" => "Google Ads Display Certification",
+                "url2" => "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
+                "src2" => "/assets/img/certificate/GoogleAdsSearchcertification_Google.jpg",
+                "title2" => "Google Ads Search certification",
+                "url3" => "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
+                "src3" => "/assets/img/certificate/GoogleAnalyticsIndividualQualification_Google.jpg",
+                "title3" => "Google Analytics Individual Qualification",
+            ],
+            [
                 "url" => "https://www.udemy.com/certificate/UC-3142d35c-73ad-46f8-9734-c9f5d669f18a/",
                 "src" => "/assets/img/certificate/UC-3142d35c-73ad-46f8-9734-c9f5d669f18a.jpg",
                 "title" => "AZ-900 Bootcamp: Microsoft Azure Fundamentals (OCT 2023)",
@@ -33,28 +57,19 @@ class ContentController extends Controller
                 "src3" => "/assets/img/certificate/UC-edaefdd0-8a94-4538-b760-54683d30fc35.jpg",
                 "title3" => "Slack the ultimate guide (2022)",
             ],
-            [
-                "url" => "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                "src" => "/assets/img/certificate/GoogleAdsDisplayCertification_Google.jpg",
-                "title" => "Google Ads Display Certification",
-                "url2" => "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                "src2" => "/assets/img/certificate/GoogleAdsSearchcertification_Google.jpg",
-                "title2" => "Google Ads Search certification",
-                "url3" => "https://skillshop.exceedlms.com/profiles/dd3b4d7fb337478f87b1f6372c277175",
-                "src3" => "/assets/img/certificate/GoogleAnalyticsIndividualQualification_Google.jpg",
-                "title3" => "Google Analytics Individual Qualification",
-            ],
+
             [
                 "url" => "https://www.udemy.com/certificate/UC-d8cdf10a-62f9-493b-bc1b-e697fb2d5ab5/",
                 "src" => "/assets/img/certificate/UC-d8cdf10a-62f9-493b-bc1b-e697fb2d5ab5.jpg",
                 "title" => "Master Course : Google Cloud Professional Cloud Architect",
-                "url2" => "https://www.udemy.com/certificate/UC-15129888-bae2-448d-b6b1-5277e131f8e2/",
-                "src2" => "/assets/img/certificate/UC-a290868c-4777-4ae2-af45-8697b4df8ce5.jpg",
-                "title2" => "Wordpress Beginners Guide Site Speed Optimization Made Easy",
-                "url3" => "https://www.udemy.com/certificate/UC-15129888-bae2-448d-b6b1-5277e131f8e2/",
-                "src3" => "/assets/img/certificate/UC-15129888-bae2-448d-b6b1-5277e131f8e2.jpg",
-                "title3" => "Excel for Marketers",
+                "url2" => "",
+                "src2" => "",
+                "title2" => "",
+                "url3" => "",
+                "src3" => "",
+                "title3" => "",
             ],
+
 
         ];
 
